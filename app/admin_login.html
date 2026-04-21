@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Admin Login | JP Enterprises{% endblock %}
+
+{% block content %}
+<section class="admin-shell">
+  <form class="admin-card" method="post">
+    <h2>Admin Login</h2>
+    <p>Manage inventory and add products.</p>
+    <label>Username
+      <input type="text" name="username" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <button class="btn btn-primary" type="submit">Login</button>
+    <a class="btn btn-outline" href="{{ url_for('home') }}">Back to Website</a>
+  </form>
+</section>
+{% endblock %}
