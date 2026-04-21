@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="navbar">
+  <div class="container nav-inner">
+    <h1>{{ store.name }}</h1>
+    <a class="btn btn-outline" href="{{ url_for('admin_login') }}">Admin</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="badge">⭐ {{ store.rating }} Google Rating</p>
+      <h2>Your Trusted Mobile Store in Saharsa</h2>
+      <p class="subtext">Premium phones, budget devices, and trusted second-hand iPhones—right here in Saharsa, Bihar.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:{{ store.phone_tel }}">Call Now</a>
+        <a class="btn btn-outline" href="#location">Visit Store</a>
+      </div>
+      <div class="highlights">
+        <span>Latest iPhones</span>
+        <span>Budget Smartphones</span>
+        <span>Accessories</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Established {{ store.established }}</h3>
+      <p>{{ store.type }}</p>
+      <p>{{ store.address }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="container">
+    <h3>Popular Products</h3>
+    <p class="section-sub">Latest stock from top brands. Call for best deals and exchange offers.</p>
+    <div class="products-grid">
+      {% for product in products %}
+      <article class="product-card">
+        <img src="{{ product['image_url'] }}" alt="{{ product['name'] }}">
+        <div class="product-body">
+          <p class="tag">{{ product['category'] }} • {{ product['condition'] }}</p>
+          <h4>{{ product['name'] }}</h4>
+          <p class="price">{{ product['price'] }}</p>
+          <a class="btn btn-primary small" href="tel:{{ store.phone_tel }}">Call for Best Price</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="why-us">
+  <div class="container">
+    <h3>Why Choose Us</h3>
+    <div class="features-grid">
+      <div class="feature">Affordable pricing</div>
+      <div class="feature">Genuine products</div>
+      <div class="feature">Friendly customer service</div>
+      <div class="feature">Latest gadgets available</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="container">
+    <h3>Customer Reviews</h3>
+    <div class="reviews-grid">
+      <blockquote>“Very good service and cost-friendly prices”</blockquote>
+      <blockquote>“Best place for second-hand iPhones”</blockquote>
+      <blockquote>“Good collection and behavior”</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="location">
+  <div class="container location-grid">
+    <div>
+      <h3>Visit Our Store</h3>
+      <p>{{ store.address }}</p>
+      <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Near+Bangaon+Rd+Ward+No+22+Krishna+Nagar+Saharsa+Bihar+852201">Get Directions</a>
+    </div>
+    <iframe title="JP Enterprises map"
+      src="https://www.google.com/maps?q=Krishna+Nagar+Saharsa+Bihar+852201&output=embed"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<section class="section dark" id="contact">
+  <div class="container contact-grid">
+    <h3>Contact {{ store.name }}</h3>
+    <p>📞 <a href="tel:{{ store.phone_tel }}">{{ store.phone_display }}</a></p>
+    <p>💬 <a target="_blank" rel="noopener" href="https://wa.me/{{ store.whatsapp }}">Chat on WhatsApp</a></p>
+    <p>📍 {{ store.address }}</p>
+  </div>
+</section>
+{% endblock %}
