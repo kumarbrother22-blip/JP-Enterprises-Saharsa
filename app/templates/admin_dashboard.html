@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard | JP Enterprises{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container admin-header">
+    <h2>Inventory Admin Panel</h2>
+    <a class="btn btn-outline" href="{{ url_for('admin_logout') }}">Logout</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container admin-layout">
+    <form class="admin-card" method="post" action="{{ url_for('admin_add_product') }}">
+      <h3>Add Product</h3>
+      <label>Product Name<input type="text" name="name" required></label>
+      <label>Category
+        <select name="category" required>
+          <option>Apple iPhones (New & Second-hand)</option>
+          <option>Samsung</option>
+          <option>OnePlus</option>
+          <option>Xiaomi</option>
+          <option>Vivo</option>
+        </select>
+      </label>
+      <label>Condition
+        <select name="condition">
+          <option>New</option>
+          <option>Second-hand</option>
+        </select>
+      </label>
+      <label>Price<input type="text" name="price" placeholder="₹49,999 or Call for best price"></label>
+      <label>Image URL<input type="url" name="image_url" placeholder="https://..."></label>
+      <label class="inline-check"><input type="checkbox" name="featured"> Mark as featured</label>
+      <button class="btn btn-primary" type="submit">Add Product</button>
+    </form>
+
+    <div class="inventory-list">
+      <h3>Current Inventory</h3>
+      {% for product in products %}
+      <article class="inventory-item">
+        <div>
+          <p class="tag">{{ product['category'] }} • {{ product['condition'] }}</p>
+          <h4>{{ product['name'] }}</h4>
+          <p>{{ product['price'] }}</p>
+        </div>
+        <form method="post" action="{{ url_for('admin_delete_product', product_id=product['id']) }}">
+          <button class="btn btn-outline small" type="submit">Delete</button>
+        </form>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
