@@ -157,3 +157,7 @@ def create_app(test_config=None):
         }
 
     return app
+
+
+# Expose a module-level app for WSGI servers (e.g., gunicorn app:app)
+app = create_app()
