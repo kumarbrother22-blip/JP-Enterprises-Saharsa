@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}JP Enterprises Saharsa | Bihar{% endblock %}</title>
+  <meta name="description" content="Mobile shop in Saharsa for latest iPhones, second hand iPhone Saharsa deals, Samsung, OnePlus, Xiaomi, and Vivo smartphones.">
+  <meta name="keywords" content="Mobile shop in Saharsa, iPhone store Saharsa, Second hand iPhone Saharsa, Best mobile shop in Bihar">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-wrapper">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  <a class="sticky-call" href="tel:{{ store.phone_tel }}">📞 Call Now</a>
+  <a class="whatsapp-float" href="https://wa.me/{{ store.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
